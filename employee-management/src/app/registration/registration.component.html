@@ -1,0 +1,59 @@
+<div class="container">
+  <h2>Employee Registration</h2>
+  <form #registerForm="ngForm" class="form-group width">
+    <label for="name">Name:</label>
+    <input type="text" name="name" class="form-control" [(ngModel)]="employee.name" #name="ngModel" required />
+    <div *ngIf="name.invalid && (name.touched || name.dirty)" class="danger">
+      name is required
+    </div>
+
+    <label for="title">Title:</label>
+    <input type="text" name="title" class="form-control" [(ngModel)]="employee.title" #title="ngModel" required />
+    <div *ngIf="title.invalid && (title.touched || title.dirty)" class="danger">
+      title is required
+    </div>
+
+    <label for="organization">Organization:</label>
+    <input type="text" name="organization" class="form-control" [(ngModel)]="employee.organization"
+      #organization="ngModel" required />
+    <div *ngIf="
+        organization.invalid && (organization.touched || organization.dirty)
+      " class="danger">
+      organization is required
+    </div>
+
+    <label for="managedBy">Managed By:</label>
+    <input type="text" name="managedBy" class="form-control" [(ngModel)]="employee.managedBy" #managedBy="ngModel"
+      required />
+    <div *ngIf="managedBy.invalid && (managedBy.touched || managedBy.dirty)" class="danger">
+      managed by is required
+    </div>
+
+    <label for="office">Office:</label>
+    <input type="text" name="office" class="form-control" [(ngModel)]="employee.office" #office="ngModel" required />
+    <div *ngIf="office.invalid && (office.touched || office.dirty)" class="danger">
+      office is required
+    </div>
+
+    <label for="email">Email:</label>
+    <input type="email" name="email" class="form-control" [(ngModel)]="employee.email" #email="ngModel" required
+      email />
+    <div class="danger" *ngIf="email.invalid && (email.touched || email.dirty)">
+      <div *ngIf="email.errors.required">email is required</div>
+      <div *ngIf="email.errors.email">not a valid email</div>
+    </div>
+
+    <label for="phoneNo">Phone No.:</label>
+    <input type="text" name="phoneNo" class="form-control" [(ngModel)]="employee.phoneNo" #phoneNo="ngModel"
+      minlength="10" maxlength="10" required />
+    <div *ngIf="phoneNo.invalid && (phoneNo.touched || phoneNo.dirty)" class="danger">
+      <div *ngIf="phoneNo.errors.required">phone number is required</div>
+      <div *ngIf="phoneNo.errors.minlength">phone number must me 10 digit</div>
+    </div>
+  </form>
+  <button class="btn btn-primary" *ngIf="!submitting" [disabled]="registerForm.invalid" (click)="registration()">
+    Submit
+  </button>
+  <button class="btn btn-secondary" (click)="cancel()">Cancel</button>
+  <button class="btn btn-info" *ngIf="submitting">Submitting</button>
+</div>
